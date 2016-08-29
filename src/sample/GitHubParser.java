@@ -11,6 +11,7 @@ import java.util.List;
  * Created by cassiano on 29/08/16.
  */
 public class GitHubParser {
+
     public static GitHubOwner parseOwnerFromJSON(String ownerJSON) {
 
         GitHubOwner owner = new GitHubOwner();
