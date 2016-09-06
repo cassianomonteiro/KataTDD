@@ -1,8 +1,10 @@
-package sample;
+package sample.github;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sample.github.GitHubOwner;
+import sample.github.GitHubRepo;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +12,7 @@ import static org.junit.Assert.*;
  * Created by cassiano on 29/08/16.
  */
 public class GitHubRepoTest {
+
     @Before
     public void setUp() throws Exception {
 
@@ -38,5 +41,15 @@ public class GitHubRepoTest {
         assertEquals(owner, repo.getOwner());
     }
 
+    @Test
+    public void toStringShouldShowName() {
+
+        // Given
+        GitHubRepo repo = new GitHubRepo();
+        repo.setName("repoName");
+
+        // Then
+        assertEquals("repoName", repo.toString());
+    }
 
 }

@@ -1,4 +1,4 @@
-package sample;
+package sample.github;
 
 import com.oracle.javafx.jmx.json.JSONDocument;
 import com.oracle.javafx.jmx.json.JSONFactory;

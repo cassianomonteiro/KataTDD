@@ -1,4 +1,4 @@
-package sample;
+package sample.github;
 
 /**
  * Created by cassiano on 29/08/16.

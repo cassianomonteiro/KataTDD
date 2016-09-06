@@ -1,8 +1,11 @@
-package sample;
+package sample.github;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sample.github.GitHubOwner;
+import sample.github.GitHubParser;
+import sample.github.GitHubRepo;
 
 import java.util.List;
 

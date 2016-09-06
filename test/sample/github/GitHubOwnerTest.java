@@ -1,6 +1,9 @@
-package sample;
+package sample.github;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import sample.github.GitHubOwner;
 
 import static org.junit.Assert.*;
 
@@ -12,12 +15,12 @@ public class GitHubOwnerTest {
     private GitHubOwner owner;
 
 
-    @org.junit.Before
+    @Before
     public void setUp() throws Exception {
         owner = new GitHubOwner();
     }
 
-    @org.junit.After
+    @After
     public void tearDown() throws Exception {
         owner = null;
     }

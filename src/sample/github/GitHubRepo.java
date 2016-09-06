@@ -1,4 +1,4 @@
-package sample;
+package sample.github;
 
 /**
  * Created by cassiano on 29/08/16.
@@ -31,5 +31,10 @@ public class GitHubRepo {
 
     public void setOwner(GitHubOwner owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }
