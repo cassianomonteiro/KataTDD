@@ -33,23 +33,26 @@ public class GitHubRepoTest {
         // When
         repo.setId(10);
         repo.setName("repoName");
+        repo.setLanguage("Java");
         repo.setOwner(owner);
 
         // Then
         assertEquals(10, repo.getId());
         assertEquals("repoName", repo.getName());
+        assertEquals("Java", repo.getLanguage());
         assertEquals(owner, repo.getOwner());
     }
 
     @Test
-    public void toStringShouldShowName() {
+    public void toStringShouldShowNameAndLanguage() {
 
         // Given
         GitHubRepo repo = new GitHubRepo();
         repo.setName("repoName");
+        repo.setLanguage("Java");
 
         // Then
-        assertEquals("repoName", repo.toString());
+        assertEquals("repoName (Java)", repo.toString());
     }
 
 }

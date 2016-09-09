@@ -39,6 +39,7 @@ public class GitHubParser {
         try {
             repo.setId(doc.getNumber("id").longValue());
             repo.setName(doc.getString("name"));
+            repo.setLanguage(doc.getString("language"));
             repo.getOwner().setID(doc.get("owner").getNumber("id").longValue());
             repo.getOwner().setLogin(doc.get("owner").getString("login"));
         }

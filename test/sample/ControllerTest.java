@@ -34,6 +34,7 @@ import static org.mockito.Mockito.*;
  */
 
 // To run JavaFX tests, add Maven dependency org.testfx:testfx-junit:4.0.4-alpha
+// @see http://torgen-engineering.blogspot.com.br/2015/11/testing-javafx-applications-with-testfx.html
 public class ControllerTest extends ApplicationTest {
 
     private Controller controller;
@@ -46,6 +47,7 @@ public class ControllerTest extends ApplicationTest {
     private TextField userTextfield;
     private Button okButton;
     private ListView<GitHubRepo> reposListView;
+    private ListView<String> repoPropertiesListView;
 
     @Override
     // Method to initialize JavaFX stuff
@@ -66,6 +68,7 @@ public class ControllerTest extends ApplicationTest {
         userTextfield = lookup("#userTextfield").query();
         okButton = lookup("#okButton").query();
         reposListView = lookup("#reposListView").query();
+        repoPropertiesListView = lookup("#repoPropertiesListView").query();
         presenterMock = mock(Presenter.class);
         controller.setPresenter(presenterMock);
     }
@@ -107,6 +110,36 @@ public class ControllerTest extends ApplicationTest {
         // Then
         verify(presenterMock).viewRequestedReposFromUser("user");
         assertEquals(2, reposListView.getItems().size());
+    }
+
+    @Test
+    public void reposListClickShouldShowRepoProperties() {
+
+        // Given
+        GitHubRepo repo1 = new GitHubRepo();
+        repo1.setName("Repo1");
+        repo1.setLanguage("Objetive-C");
+        GitHubRepo repo2 = new GitHubRepo();
+        repo2.setName("Repo2");
+        repo2.setLanguage("Java");
+
+        List<GitHubRepo> repos = Arrays.asList(repo1, repo2);
+        List<String> repoProperties = Arrays.asList("Property1","Property2","Property3","Property4");
+
+        doAnswer(invocationOnMock -> {
+            controller.showRepoProperties(repoProperties);
+            return null;
+        }).when(presenterMock).viewSelectedRepo(repo2);
+
+        // When
+        controller.showReposList(repos);
+        WaitForAsyncUtils.waitForFxEvents();
+        clickOn("Repo2 (Java)");
+        WaitForAsyncUtils.waitForFxEvents();
+
+        // Then
+        verify(presenterMock).viewSelectedRepo(repo2);
+        assertEquals(4, repoPropertiesListView.getItems().size());
     }
 
 }

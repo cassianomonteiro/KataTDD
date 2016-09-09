@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox>
                     <children>
-                        <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" text="Usuário do github:">
+                        <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" text="GitHub user:">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="userTextfield" minWidth="-Infinity" prefWidth="300.0" promptText="Digite para listar os repositórios">
+                        <TextField fx:id="userTextfield" minWidth="-Infinity" prefWidth="300.0" promptText="Type to list user's repositories">
                             <HBox.margin>
                                 <Insets bottom="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -32,7 +30,7 @@
                     <children>
                         <VBox>
                             <children>
-                                <Label text="Repositórios" />
+                                <Label text="Repositories" />
                                 <ListView fx:id="reposListView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="285.0">
                                     <VBox.margin>
                                         <Insets right="10.0" />
@@ -42,7 +40,7 @@
                         </VBox>
                         <VBox>
                             <children>
-                                <Label text="Propriedades do repositório" />
+                                <Label text="Repository properties" />
                                 <ListView fx:id="repoPropertiesListView" />
                             </children>
                         </VBox>

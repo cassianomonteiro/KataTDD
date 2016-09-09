@@ -7,6 +7,16 @@ public class GitHubRepo {
 
     private long id;
     private String name;
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    private String language;
     private GitHubOwner owner;
 
     public long getId() {
@@ -35,6 +45,6 @@ public class GitHubRepo {
 
     @Override
     public String toString() {
-        return getName();
+        return name + " (" + language + ")";
     }
 }

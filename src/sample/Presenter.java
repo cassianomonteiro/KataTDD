@@ -3,6 +3,7 @@ package sample;
 import sample.github.GitHubFetcher;
 import sample.github.GitHubRepo;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,6 +13,7 @@ public class Presenter {
     private GitHubFetcher gitHubFetcher;
     private ViewController viewController;
 
+    // Disable default constructor to avoid creating a Presenter without a ViewController
     private Presenter() {}
 
     public Presenter(ViewController viewController) {
@@ -30,6 +32,16 @@ public class Presenter {
     public void viewRequestedReposFromUser(String username) {
         List<GitHubRepo> repos = gitHubFetcher.getUserRepos(username);
         viewController.showReposList(repos);
+    }
+    public void viewSelectedRepo(GitHubRepo repo) {
+
+        List<String> repoProperties = Arrays.asList(
+                "id: " + repo.getId(),
+                "name: " + repo.getName(),
+                "language: " + repo.getLanguage(),
+                "owner: " + repo.getOwner().getLogin());
+
+        viewController.showRepoProperties(repoProperties);
     }
 
     public ViewController getViewController() {

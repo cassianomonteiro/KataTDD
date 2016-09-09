@@ -24,6 +24,7 @@ public class GitHubParserTest {
         simpleRepoJSON = "{\n" +
                 "    \"id\": 37609525,\n" +
                 "    \"name\": \"cockeYoungerKasami\",\n" +
+                "    \"language\": \"Java\",\n" +
                 "    \"full_name\": \"cassianomonteiro/cockeYoungerKasami\",\n" +
                 "    \"owner\": {\n" +
                 "      \"login\": \"cassianomonteiro\",\n" +
@@ -83,6 +84,7 @@ public class GitHubParserTest {
         GitHubRepo repo = repos.get(0);
         assertEquals(37609525, repo.getId());
         assertEquals("cockeYoungerKasami", repo.getName());
+        assertEquals("Java", repo.getLanguage());
         assertNotNull(repo.getOwner());
         assertEquals("cassianomonteiro", repo.getOwner().getLogin());
         assertEquals(1374714, repo.getOwner().getID());

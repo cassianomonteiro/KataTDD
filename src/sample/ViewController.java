@@ -10,4 +10,5 @@ import java.util.List;
 public interface ViewController {
 
     void showReposList(List<GitHubRepo> repos);
+    void showRepoProperties(List<String> expectedRepoProperties);
 }

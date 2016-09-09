@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import sample.github.GitHubFetcher;
+import sample.github.GitHubOwner;
 import sample.github.GitHubRepo;
 
 import java.util.Arrays;
@@ -54,6 +55,27 @@ public class PresenterTest {
 
         // Then
         verify(viewControllerMock).showReposList(repos);
+    }
+
+    @Test
+    public void selectedRepoShouldShowRepoPropertiesAsList() {
+
+        // Given
+        GitHubRepo repo = new GitHubRepo();
+        repo.setOwner(new GitHubOwner());
+        repo.setId(10);
+        repo.setName("repo_name");
+        repo.setLanguage("repo_language");
+        repo.getOwner().setLogin("owner_login");
+
+        List<String> expectedRepoProperties = Arrays.asList(
+                "id: 10", "name: repo_name", "language: repo_language", "owner: owner_login");
+
+        // When
+        presenter.viewSelectedRepo(repo);
+
+        // Then
+        verify(viewControllerMock).showRepoProperties(expectedRepoProperties);
     }
 
     @Test

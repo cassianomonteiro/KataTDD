@@ -4,14 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import sample.github.GitHubFetcher;
 import sample.github.GitHubRepo;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class Controller implements ViewController {
+public class Controller implements ViewController, Initializable {
 
     @FXML
     private ListView<String> repoPropertiesListView;
@@ -21,40 +23,24 @@ public class Controller implements ViewController {
 
     @FXML
     private ListView<GitHubRepo> reposListView;
-    private GitHubFetcher gitHubFetcher;
+
     private Presenter presenter;
 
     public Controller() {
         this.presenter = new Presenter(this);
     }
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        // Set action for selecting list item
+        reposListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> presenter.viewSelectedRepo(newValue));
+    }
+
     @FXML
     void okButtonClicked(ActionEvent event) {
         presenter.viewRequestedReposFromUser(userTextfield.getText());
-    }
-
-    public TextField getUserTextfield() {
-        return userTextfield;
-    }
-
-    public void setUserTextfield(TextField userTextfield) {
-        this.userTextfield = userTextfield;
-    }
-
-    public void setGitHubFetcher(GitHubFetcher gitHubFetcher) {
-        this.gitHubFetcher = gitHubFetcher;
-    }
-
-    public GitHubFetcher getGitHubFetcher() {
-        return gitHubFetcher;
-    }
-
-    public ListView<GitHubRepo> getReposListView() {
-        return reposListView;
-    }
-
-    public void setReposListView(ListView<GitHubRepo> reposListView) {
-        this.reposListView = reposListView;
     }
 
     public Presenter getPresenter() {
@@ -69,5 +55,11 @@ public class Controller implements ViewController {
     public void showReposList(List<GitHubRepo> repos) {
         ObservableList<GitHubRepo> items = FXCollections.observableArrayList(repos);
         reposListView.setItems(items);
+    }
+
+    @Override
+    public void showRepoProperties(List<String> expectedRepoProperties) {
+        ObservableList<String> items = FXCollections.observableArrayList(expectedRepoProperties);
+        repoPropertiesListView.setItems(items);
     }
 }
